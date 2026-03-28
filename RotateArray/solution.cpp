@@ -40,17 +40,21 @@ Could you do it in-place with O(1) extra space?
 // then reverse whole array then cause k in front, then reverse the k & right k
 
 
-class Solution {
+class Solution 
+{
 public:
-    void reversePart(vector<int>& nums, int left, int right) {
-        while (left < right) {
+    void reversePart(vector<int>& nums, int left, int right) 
+    {
+        while (left < right) 
+        {
             swap(nums[left], nums[right]);
             left++;
             right--;
         }
     }
 
-    void rotate(vector<int>& nums, int k) {
+    void rotate(vector<int>& nums, int k) 
+    {
         int n = nums.size();
         k = k % n;
 
