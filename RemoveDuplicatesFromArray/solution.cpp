@@ -43,7 +43,7 @@ Solution 1:
 comparitorIndex=0
 1. start iterate with N[comparitorIndex]
 2. compare N[comparitorIndex] with [N+i], swapIndex=1
-3. if duplicate, ignore, next iteration will compare N[0] with [N+i] again.
+3. if duplicate, ignore, next iteration will compare N[comparitorIndex] with [N+i] again.
 4. if non duplicate, then 
     OPERATION = SWAP element with swapIndex, 
     UPDATE    = swapIndex++, i++, ca  
@@ -52,7 +52,8 @@ comparitorIndex=0
 
 class Solution {
 public:
-    int removeDuplicates(vector<int>& nums) {
+    int removeDuplicates(vector<int>& nums) 
+    {
         if (nums.size() == 0) {
             return 0;
         }
@@ -61,11 +62,14 @@ public:
         int swapIndex = 1;
         int i = 1;
 
-        while (i < nums.size()) {
-            if (nums[comparatorIndex] == nums[i]) {
+        while (i < nums.size()) 
+        {
+            if (nums[comparatorIndex] == nums[i]) 
+            {
                 i++;
             } 
-            else {
+            else 
+            {
                 nums[swapIndex] = nums[i];
                 comparatorIndex = swapIndex;
                 swapIndex++;
