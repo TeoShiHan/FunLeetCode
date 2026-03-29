@@ -1,0 +1,109 @@
+Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
+
+You may assume that each input would have exactly one solution, and you may not use the same element twice.
+
+You can return the answer in any order.
+
+ 
+
+Example 1:
+
+Input: nums = [2,7,11,15], target = 9
+Output: [0,1]
+Explanation: Because nums[0] + nums[1] == 9, we return [0, 1].
+Example 2:
+
+Input: nums = [3,2,4], target = 6
+Output: [1,2]
+Example 3:
+
+Input: nums = [3,3], target = 6
+Output: [0,1]
+ 
+
+Constraints:
+
+2 <= nums.length <= 104
+-109 <= nums[i] <= 109
+-109 <= target <= 109
+Only one valid answer exists.
+
+solution :
+
+perform searching start from index 0,
+
+hence 
+
+0,1
+0,2
+
+1,2
+1,3
+
+..
+..
+
+
+and so on, if add to 9 then return
+
+Time complexity = O(n²)
+
+//////// not good one
+
+put all element into the set
+then ...
+traverse array
+then minus with target value
+then search from set isit exist
+if exist then search index
+if no exist continue traverse 
+until exist
+
+
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) 
+    {
+        unordered_map<int, int> map; // value → index
+
+        for (int i = 0; i < nums.size(); i++)
+        {
+            int needed = target - nums[i];
+
+            // check first
+            if (map.find(needed) != map.end())
+            {
+                return {map[needed], i};
+            }
+
+            // then store
+            map[nums[i]] = i;
+        }
+
+        return {}; // guaranteed one solution, just safety
+    }
+};
+
+Others people solution top 1: 
+#include <vector>
+#include <unordered_map>
+using namespace std;
+
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        unordered_map<int, int> seen;  // {number: index}
+        
+        for (int i = 0; i < nums.size(); i++) {
+            int complement = target - nums[i];
+            
+            if (seen.find(complement) != seen.end()) {
+                return {seen[complement], i};
+            }
+            
+            seen[nums[i]] = i;
+        }
+        
+        return {};
+    }
+};
